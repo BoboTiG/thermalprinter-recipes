@@ -1,0 +1,2 @@
+arabic_reshaper
+python-bidi
