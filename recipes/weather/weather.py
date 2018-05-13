@@ -9,7 +9,7 @@ from datetime import datetime
 from forecastio import manual
 from thermalprinter import CodePage, ThermalPrinter
 
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 __author__ = "Mickaël 'Tiger-222' Schoentgen"
 __copyright__ = """
     Copyright (c) 2016-2018, Mickaël 'Tiger-222' Schoentgen
@@ -43,14 +43,15 @@ class Weather:
     def start(self):
         """ La méthode qui s'occupe de tout gérer. """
 
-        today = self.forecast.daily().data[0]
-        self.data['icon'] = today.icon
+        daily = self.forecast.daily()
+        today = daily.data[3]
+        self.data['icon'] = daily.data[0].icon
         self.data['temp_min'] = int(today.temperatureMin)
         self.data['temp_max'] = int(today.temperatureMax)
         self.data['wind'] = int(today.windSpeed)
         self.data['wind_dir'] = today.windBearing if self.data['wind'] else -1
         self.data['humidity'] = int(today.humidity * 100)
-        self.data['precipitations'] = int(today.precipIntensity)
+        self.data['precipitations'] = int(today.precipIntensityMax * 100)
 
         model = self.get_model()
 
