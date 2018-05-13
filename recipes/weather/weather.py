@@ -111,11 +111,23 @@ class Weather:
         self.data['summary'] = summary
 
         # ASCII art ^^
-        ascii_art = ini['models'][model].replace('a', '')
-        if ascii_art.startswith('::'):
-            ascii_art = ini['models'][ascii_art[2:]].replace('a', '')
+        try:
+            # Example: rain-heavy
+            ascii_art = ini['models'][model]
+        except KeyError:
+            try:
+                # Example: rain
+                model = self.data['icon']
+                ascii_art = ini['models'][model]
+            except KeyError:
+                print('ASCII art manquant : {}'.format(model))
+                model = 'unknown'
+                ascii_art = ini['models'][model]
 
-        return ascii_art
+        if ascii_art.startswith('::'):
+            ascii_art = ini['models'][ascii_art[2:]]
+
+        return ascii_art.replace('a', '')
 
     def print_data(self, model):
         """ Just print. """
