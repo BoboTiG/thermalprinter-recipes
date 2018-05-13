@@ -102,8 +102,11 @@ class Weather:
             except KeyError:
                 print('Missing model: {}'.format(model))
                 model = 'unknown'
+                summary = ini['summary'][model]
 
-        summary = ini['summary'][model]
+        if summary.startswith('::'):
+            summary = ini['summary'][summary[2:]]
+
         self.data['summary'] = summary
 
         # ASCII art ^^
