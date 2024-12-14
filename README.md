@@ -1,5 +1,9 @@
 # ThermalPrinter Recipes
 
+**Note:** As of 2024-12-14, contents of this repository were moved to the main one (https://github.com/BoboTiG/thermalprinter).
+
+---
+
 If you do not know what this repository is about, just see it as a snippet stock for the [ThermalPrinter](https://github.com/BoboTiG/thermalprinter) module.
 
 You will find several use cases for your DP-EH600 thermal printer.
